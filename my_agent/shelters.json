@@ -1,0 +1,72 @@
+[
+  {
+    "id": "S001",
+    "name": "Harlow Street Recreation Center",
+    "county": "Velmont",
+    "capacity": 220,
+    "open": true
+  },
+  {
+    "id": "S002",
+    "name": "Velmont Fairgrounds Hall B",
+    "county": "Velmont",
+    "capacity": 450,
+    "open": true
+  },
+  {
+    "id": "S003",
+    "name": "St. Odran Parish Gym",
+    "county": "Velmont",
+    "capacity": 90,
+    "open": false
+  },
+  {
+    "id": "S004",
+    "name": "Tarrow Middle School",
+    "county": "Tarrow",
+    "capacity": 310,
+    "open": true
+  },
+  {
+    "id": "S005",
+    "name": "Kessling Community Center",
+    "county": "Tarrow",
+    "capacity": 140,
+    "open": true
+  },
+  {
+    "id": "S006",
+    "name": "Quillham Civic Arena",
+    "county": "Quillham",
+    "capacity": 600,
+    "open": true
+  },
+  {
+    "id": "S007",
+    "name": "Dunmere Library Annex",
+    "county": "Quillham",
+    "capacity": 60,
+    "open": true
+  },
+  {
+    "id": "S008",
+    "name": "Pell Road Armory",
+    "county": "Quillham",
+    "capacity": 275,
+    "open": false
+  },
+  {
+    "id": "S009",
+    "name": "Wrenfield Senior Center",
+    "county": "Quillham",
+    "capacity": 85,
+    "open": true
+  },
+  {
+    "id": "S010",
+    "name": "Brindlemoor High School",
+    "county": "Brindlemoor",
+    "capacity": 380,
+    "open": true
+  }
+]
