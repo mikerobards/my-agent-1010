@@ -73,7 +73,16 @@ root_agent = Agent(
     model='gemini-3.8-flash',
     name='root_agent',
     description='A helpful assistant answering questions about shelters.',
-    instruction='Provide information about the parsed json data in the shelters.json file. ',
+    instruction=(
+        'Provide information about the parsed json data in the shelters.json file. '
+        'Only open shelters are reported. '
+        'Use get_shelter_capacity when the user asks how many people a specific, '
+        'named shelter can hold. '
+        'Use get_shelters_by_county when the user asks which shelters are in a '
+        'county or wants to find shelters in a particular area. '
+        'If a tool returns an error, such as a shelter being closed or not found, '
+        'relay it to the user plainly.'
+    ),
     tools=[get_shelter_capacity,
            get_shelters_by_county],
 )
