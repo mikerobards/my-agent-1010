@@ -11,23 +11,9 @@ def load_json(path):
         return json.load(f)
 
 
-def build_catalog(json_data):
-    """Index a list of shelter records by shelter id."""
-    shelter_catalog = {}
-    for shelter in json_data:
-        shelter_id = shelter['id']
-        shelter_catalog[shelter_id] = {
-            'name': shelter['name'],
-            'county': shelter['county'],
-            'capacity': shelter['capacity'],
-            'open': shelter['open'],
-        }
-    return shelter_catalog
-
-
 def load_catalog(path=SHELTERS_PATH):
-    """Load the shelters file and build the catalog from it."""
-    return build_catalog(load_json(path))
+    """Load the list of shelter records from the shelters file."""
+    return load_json(path)
 
 
 def get_shelter_capacity(shelter_name: str) -> dict:
@@ -41,7 +27,7 @@ def get_shelter_capacity(shelter_name: str) -> dict:
         dict: A dictionary containing the shelter's capacity, or an error
         message if no shelter with that name exists or it is closed.
     """
-    for shelter in load_catalog().values():
+    for shelter in load_catalog():
         if shelter['name'].lower() == shelter_name.lower():
             if not shelter['open']:
                 return {"error": f"Shelter '{shelter['name']}' is currently closed."}
@@ -61,7 +47,7 @@ def get_shelters_by_county(county_name: str) -> dict:
         error message if no open shelters are found in that county.
     """
     shelters_in_county = []
-    for shelter in load_catalog().values():
+    for shelter in load_catalog():
         if shelter['county'].lower() == county_name.lower() and shelter['open']:
             shelters_in_county.append(shelter)
     if not shelters_in_county:
