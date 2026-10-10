@@ -39,31 +39,33 @@ def get_shelter_capacity(shelter_name: str) -> dict:
 
     Returns:
         dict: A dictionary containing the shelter's capacity, or an error
-        message if no shelter with that name exists.
+        message if no shelter with that name exists or it is closed.
     """
     for shelter in load_catalog().values():
         if shelter['name'].lower() == shelter_name.lower():
+            if not shelter['open']:
+                return {"error": f"Shelter '{shelter['name']}' is currently closed."}
             return {"name": shelter['name'], "capacity": shelter['capacity']}
     return {"error": f"No shelter named '{shelter_name}' was found."}
 
 
 def get_shelters_by_county(county_name: str) -> dict:
     """
-    Get a list of shelters in a specified county.
+    Get a list of open shelters in a specified county.
 
     Args:
         county_name (str): The name of the county.
 
     Returns:
-        dict: A dictionary containing the shelters in the county, or an error
-        message if no shelters are found in that county.
+        dict: A dictionary containing the open shelters in the county, or an
+        error message if no open shelters are found in that county.
     """
     shelters_in_county = []
     for shelter in load_catalog().values():
-        if shelter['county'].lower() == county_name.lower():
+        if shelter['county'].lower() == county_name.lower() and shelter['open']:
             shelters_in_county.append(shelter)
     if not shelters_in_county:
-        return {"error": f"No shelters found in county '{county_name}'."}
+        return {"error": f"No open shelters found in county '{county_name}'."}
     return {"county": county_name, "shelters": shelters_in_county}
 
 
