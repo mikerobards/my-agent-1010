@@ -6,11 +6,16 @@ from my_agent import agent
 from my_agent.agent import get_shelter_capacity, get_shelters_by_county
 
 CATALOG = [
-    {"id": "T001", "name": "Harlow Street Recreation Center", "county": "Velmont", "capacity": 220, "open": True},
-    {"id": "T002", "name": "Velmont High Gym", "county": "Velmont", "capacity": 150, "open": True},
-    {"id": "T003", "name": "St. Odran Parish Gym", "county": "Velmont", "capacity": 80, "open": False},
-    {"id": "T004", "name": "Quillham Civic Arena", "county": "Quillham", "capacity": 500, "open": True},
-    {"id": "T005", "name": "Fulton Library Annex", "county": "Fulton", "capacity": 40, "open": False},
+    {"id": "T001", "name": "Harlow Street Recreation Center",
+        "county": "Velmont", "capacity": 220, "open": True},
+    {"id": "T002", "name": "Velmont High Gym",
+        "county": "Velmont", "capacity": 150, "open": True},
+    {"id": "T003", "name": "St. Odran Parish Gym",
+        "county": "Velmont", "capacity": 80, "open": False},
+    {"id": "T004", "name": "Quillham Civic Arena",
+        "county": "Quillham", "capacity": 500, "open": True},
+    {"id": "T005", "name": "Fulton Library Annex",
+        "county": "Fulton", "capacity": 40, "open": False},
 ]
 
 
@@ -36,7 +41,8 @@ def test_capacity_name_match_is_case_insensitive():
 
 def test_capacity_for_closed_shelter_returns_error():
     result = get_shelter_capacity("St. Odran Parish Gym")
-    assert result == {"error": "Shelter 'St. Odran Parish Gym' is currently closed."}
+    assert result == {
+        "error": "Shelter 'St. Odran Parish Gym' is currently closed."}
 
 
 def test_capacity_for_unknown_shelter_returns_error():
@@ -54,7 +60,8 @@ def test_capacity_for_partial_name(partial):
 
 def test_capacity_partial_name_matching_closed_shelter_returns_error():
     result = get_shelter_capacity("Odran")
-    assert result == {"error": "Shelter 'St. Odran Parish Gym' is currently closed."}
+    assert result == {
+        "error": "Shelter 'St. Odran Parish Gym' is currently closed."}
 
 
 def test_capacity_ambiguous_partial_name_lists_matches():
@@ -67,15 +74,18 @@ def test_capacity_ambiguous_partial_name_lists_matches():
 
 def test_capacity_exact_name_wins_over_partial_matches(monkeypatch):
     catalog = CATALOG + [
-        {"id": "T006", "name": "Velmont High Gym Annex", "county": "Velmont", "capacity": 60, "open": True},
+        {"id": "T006", "name": "Velmont High Gym Annex",
+            "county": "Velmont", "capacity": 60, "open": True},
     ]
     monkeypatch.setattr(agent, "load_catalog", lambda: catalog)
-    assert get_shelter_capacity("velmont high gym") == {"name": "Velmont High Gym", "capacity": 150}
+    assert get_shelter_capacity("velmont high gym") == {
+        "name": "Velmont High Gym", "capacity": 150}
 
 
 @pytest.mark.parametrize("blank", ["", "   "])
 def test_capacity_blank_name_returns_error(blank):
-    assert get_shelter_capacity(blank) == {"error": "No shelter name was given."}
+    assert get_shelter_capacity(
+        blank) == {"error": "No shelter name was given."}
 
 
 # get_shelters_by_county
@@ -126,7 +136,8 @@ def test_tools_read_from_shelters_file(monkeypatch, tmp_path):
     path = tmp_path / "shelters.json"
     path.write_text(json.dumps(CATALOG[:1]))
     monkeypatch.setattr(agent, "load_catalog", lambda: agent.load_json(path))
-    assert get_shelter_capacity("Harlow Street Recreation Center")["capacity"] == 220
+    assert get_shelter_capacity("Harlow Street Recreation Center")[
+        "capacity"] == 220
     assert "error" in get_shelter_capacity("Velmont High Gym")
 
 
