@@ -6,7 +6,7 @@ A [Google ADK](https://google.github.io/adk-docs/) agent that answers questions 
 
 | Tool | What it does |
 | --- | --- |
-| `get_shelter_capacity(shelter_name)` | Returns how many people a named shelter can hold. Returns an error if the shelter is closed or doesn't exist. |
+| `get_shelter_capacity(shelter_name)` | Returns how many people a named shelter can hold. Accepts a partial name ("Harlow" finds Harlow Street Recreation Center); an exact name match wins. Returns an error if the shelter is closed, doesn't exist, or the partial name matches more than one shelter (the error lists the matches). |
 | `get_shelters_by_county(county_name)` | Lists the open shelters in a county. A trailing "County" is ignored, so "Velmont" and "Velmont County" both work. Returns an error if the county has none. |
 
 Name matching is case-insensitive.
@@ -43,6 +43,15 @@ Example questions:
 
 - "How many people can Harlow Street Recreation Center hold?"
 - "Which shelters are open in Velmont County?"
+
+## Testing
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The tests in `tests/` call both tools directly against a fixed in-test catalog, so they don't need an API key and don't depend on what's in `shelters.json`.
 
 ## Evidence
 
