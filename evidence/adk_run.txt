@@ -1,0 +1,51 @@
+[user]: How many people can Quillham Civic Arena hold?
+/Users/michaelrobards/Projects/my-agent-1010/.venv/lib/python3.14/site-packages/google/adk/models/llm_request.py:306: UserWarning: [EXPERIMENTAL] feature FeatureName.JSON_SCHEMA_FOR_FUNC_DECL is enabled.
+  declaration = tool._get_declaration()
+[root_agent]: Quillham Civic Arena can hold up to 600 people.
+[user]: How many people can St. Odran Parish Gym hold?
+[root_agent]: St. Odran Parish Gym is currently closed.
+[user]: Which shelters are open in Velmont County?
+[root_agent]: The following open shelters are in Velmont County:
+
+- **Harlow Street Recreation Center** (Capacity: 220)
+- **Velmont Fairgrounds Hall B** (Capacity: 450)
+[user]: What shelters are in Fulton county? 
+[root_agent]: No open shelters were found in Fulton County.
+[user]: What should I pack for an emergency shelter?
+[root_agent]: When preparing to go to an emergency shelter, it is best to pack essential items in an easy-to-carry bag (such as a backpack or duffel bag). Recommended items include:
+
+### 1. Important Documents & Money
+* Government-issued photo IDs and driver’s licenses
+* Critical documents (insurance cards, medical records, contact lists) sealed in a waterproof bag
+* Cash in small denominations and payment cards
+
+### 2. Medications & Medical Supplies
+* A 7- to 14-day supply of prescription medications
+* Over-the-counter essentials (pain relievers, allergy medication)
+* Extra eyeglasses, contact lenses, or hearing aid batteries
+* Any necessary medical equipment (e.g., CPAP machine, blood glucose monitor)
+
+### 3. Bedding & Clothing
+* A sleeping bag or warm blanket, and a travel pillow (shelters often provide only cots or floor mats)
+* Several changes of weather-appropriate, comfortable clothing
+* Sturdy, comfortable shoes and extra socks
+
+### 4. Personal Hygiene & Sanitation
+* Toothbrush, toothpaste, soap, and shampoo
+* Hand sanitizer, disinfectant wipes, and tissues
+* Towel and washcloth
+* Feminine hygiene products
+
+### 5. Electronics
+* Cell phone, charging cables, and a fully charged portable power bank
+
+### 6. Baby & Child Supplies (if applicable)
+* Diapers, wipes, formula, bottles, baby food, and comfort items (small toy or blanket)
+
+### 7. Snacks & Water
+* Non-perishable snacks (granola bars, dried fruit, nuts)
+* A refillable water bottle
+
+---
+
+*Note: If you have pets, check ahead to confirm if the shelter accommodates them. If permitted, bring a pet carrier, leash, pet food, and vaccination records. Do not bring alcohol, weapons, or illegal substances, as these are prohibited in emergency shelters.*
