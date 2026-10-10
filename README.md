@@ -7,7 +7,7 @@ A [Google ADK](https://google.github.io/adk-docs/) agent that answers questions 
 | Tool | What it does |
 | --- | --- |
 | `get_shelter_capacity(shelter_name)` | Returns how many people a named shelter can hold. Returns an error if the shelter is closed or doesn't exist. |
-| `get_shelters_by_county(county_name)` | Lists the open shelters in a county. Returns an error if the county has none. |
+| `get_shelters_by_county(county_name)` | Lists the open shelters in a county. A trailing "County" is ignored, so "Velmont" and "Velmont County" both work. Returns an error if the county has none. |
 
 Name matching is case-insensitive.
 
@@ -43,6 +43,17 @@ Example questions:
 
 - "How many people can Harlow Street Recreation Center hold?"
 - "Which shelters are open in Velmont County?"
+
+## Evidence
+
+The [`evidence/`](evidence/) folder holds sample runs of the agent:
+
+| File | Shows |
+| --- | --- |
+| [`adk_run.txt`](evidence/adk_run.txt) | Terminal transcript from `adk run my_agent` covering all the cases below. |
+| [Screenshot 14.54.29](evidence/Screenshot%202026-10-10%20at%2014.54.29.png) | `adk web`: capacity lookup for an open shelter (Quillham Civic Arena) and a closed one (St. Odran Parish Gym). |
+| [Screenshot 14.55.20](evidence/Screenshot%202026-10-10%20at%2014.55.20.png) | `adk web`: county lookup with open shelters (Velmont) and with none (Fulton). |
+| [Screenshot 14.55.58](evidence/Screenshot%202026-10-10%20at%2014.55.58.png) | `adk web`: a general question ("What should I pack for an emergency shelter?") answered without calling a tool. |
 
 ## Data
 

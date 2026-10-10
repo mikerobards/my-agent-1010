@@ -40,12 +40,16 @@ def get_shelters_by_county(county_name: str) -> dict:
     Get a list of open shelters in a specified county.
 
     Args:
-        county_name (str): The name of the county.
+        county_name (str): The name of the county. A trailing "County"
+            (e.g. "Velmont County") is ignored.
 
     Returns:
         dict: A dictionary containing the open shelters in the county, or an
         error message if no open shelters are found in that county.
     """
+    county_name = county_name.strip()
+    if county_name.lower().endswith(' county'):
+        county_name = county_name[:-len(' county')].rstrip()
     shelters_in_county = []
     for shelter in load_catalog():
         if shelter['county'].lower() == county_name.lower() and shelter['open']:
@@ -67,7 +71,11 @@ root_agent = Agent(
         'Use get_shelters_by_county when the user asks which shelters are in a '
         'county or wants to find shelters in a particular area. '
         'If a tool returns an error, such as a shelter being closed or not found, '
-        'relay it to the user plainly.'
+        'relay it to the user plainly. '
+        'If the user asks a general question that is not about shelter '
+        'capacity or which shelters are open in a county, do not answer it. '
+        'Instead, tell the user that this is a shelter information tool and '
+        'that you can only help with shelter capacity and open shelters by county.'
     ),
     tools=[get_shelter_capacity,
            get_shelters_by_county],
