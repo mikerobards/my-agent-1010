@@ -108,7 +108,10 @@ def test_county_returns_only_open_shelters():
 def test_county_name_is_normalized(county):
     result = get_shelters_by_county(county)
     assert result["county"].lower() == "velmont"
-    assert len(result["shelters"]) == 2
+    assert [s["name"] for s in result["shelters"]] == [
+        "Harlow Street Recreation Center",
+        "Velmont High Gym",
+    ]
 
 
 def test_county_with_only_closed_shelters_returns_error():
@@ -136,9 +139,13 @@ def test_tools_read_from_shelters_file(monkeypatch, tmp_path):
     path = tmp_path / "shelters.json"
     path.write_text(json.dumps(CATALOG[:1]))
     monkeypatch.setattr(agent, "load_catalog", lambda: agent.load_json(path))
-    assert get_shelter_capacity("Harlow Street Recreation Center")[
-        "capacity"] == 220
-    assert "error" in get_shelter_capacity("Velmont High Gym")
+    assert get_shelter_capacity("Harlow Street Recreation Center") == {
+        "name": "Harlow Street Recreation Center",
+        "capacity": 220,
+    }
+    # Velmont High Gym is in CATALOG but not in the file, so it must be unknown.
+    assert get_shelter_capacity("Velmont High Gym") == {
+        "error": "No shelter named 'Velmont High Gym' was found."}
 
 
 def test_real_catalog_has_expected_fields():
